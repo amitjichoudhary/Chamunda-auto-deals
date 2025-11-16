@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CHAMUNDA AUTO DEAL</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+  :root{
+    --bg:#0b1120;
+    --card:#141c2f;
+    --accent:#ffd700;
+    --muted:#cfcfcf;
+    --glass: rgba(11,17,32,0.85);
+    --radius:14px;
+  }
+
+  /* Reset */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family: "Poppins", sans-serif;
+    background:var(--bg);
+    color:#fff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+  }
+
+  a{color:inherit}
+  img{display:block;max-width:100%}
+
+  /* Top banner (scrolls with page) */
+  .top-banner{
+    width:100%;
+    height: 350px;            /* change this height if you want smaller/bigger banner */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#c0631d;
+    overflow:hidden;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.6);
+  }
+  .top-banner .banner-img{
+    height:100%;
+    width:auto;
+    object-fit:cover;
+  }
+
+  /* Hero */
+  .hero{
+    min-height: calc(100vh - 160px); /* visible area after banner */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px 18px;
+    position:relative;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.55) 100%),
+      url("https://images.unsplash.com/photo-1517142089942-ba376ce32a0a?auto=format&fit=crop&w=1950&q=80") center/cover no-repeat;
+  }
+
+  .hero-content{
+    max-width:980px;
+    width:100%;
+    padding:28px;
+    border-radius:12px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.25));
+    backdrop-filter: blur(2px);
+  }
+
+  .hero h1{
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(28px, 6vw, 46px);
+    color:var(--accent);
+    letter-spacing:0.6px;
+    margin-bottom:10px;
+    text-shadow: 0 4px 18px rgba(0,0,0,0.6), 0 0 12px rgba(255,215,0,0.08);
+  }
+
+  .hero .tagline{
+    font-size: clamp(14px, 3.2vw, 20px);
+    color:#fff;
+    opacity:0.95;
+    margin-bottom:18px;
+  }
+
+  .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    background:var(--accent);
+    color:#000;
+    padding:12px 20px;
+    border-radius:10px;
+    font-weight:600;
+    border:none;
+    cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease;
+    box-shadow: 0 6px 18px rgba(255,215,0,0.08);
+  }
+  .btn:hover{transform:translateY(-4px);box-shadow: 0 10px 30px rgba(255,215,0,0.12)}
+
+  /* Stock Section */
+  .container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:40px 18px;
+  }
+
+  .stock-section h2{
+    color:var(--accent);
+    font-size:28px;
+    text-align:center;
+    margin-bottom:18px;
+  }
+
+  /* Responsive grid: auto-fit (mobile-first) */
+  .bike-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* auto-fit, min card width 220px */
+    gap:18px;
+    align-items:start;
+  }
+
+  .bike-card-square{
+    background:var(--card);
+    border-radius: var(--radius);
+    overflow:hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    transition: transform .22s ease, box-shadow .22s ease;
+  }
+  .bike-card-square:hover{ transform: translateY(-8px); box-shadow: 0 18px 40px rgba(0,0,0,0.6) }
+
+  .bike-thumb{
+    width:100%;
+    aspect-ratio: 16/10; /* rectangular thumb for cards */
+    object-fit:cover;
+    display:block;
+  }
+
+  .bike-card-body{
+    padding:12px 14px;
+    display:flex;
+    gap:12px;
+    flex-direction:column;
+    flex:1;
+    justify-content:space-between;
+  }
+
+  .bike-meta{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:6px;
+  }
+  .bike-meta small{
+    background: rgba(255,255,255,0.04);
+    padding:6px 8px;
+    border-radius:8px;
+    color:var(--muted);
+    font-size:12px;
+  }
+
+  .bike-card-body h3{
+    color:var(--accent);
+    font-size:18px;
+    margin-bottom:4px;
+  }
+
+  .bike-card-body .price{
+    color:#fff;
+    font-weight:700;
+  }
+
+  .bike-card-body .details-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:8px;
+    margin-top:8px;
+  }
+
+  .small-note{ font-size:13px; color:var(--muted) }
+
+  /* Reviews, Achievements, Team, Contact basics */
+  section h2{ margin-bottom:18px }
+
+  .reviews-container,
+  .achievements-container,
+  .team-container{
+    display:grid;
+    gap:16px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .review-card, .achievement-card, .team-card{
+    background:var(--card);
+    padding:14px;
+    border-radius:12px;
+  }
+  .review-card img, .team-card img{
+    width:76px;height:76px;border-radius:50%;object-fit:cover;margin-bottom:8px;
+  }
+  .achievement-card h3,.team-card h3{ color:var(--accent) }
+
+  /* Contact */
+  .contact-container{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:18px;
+  }
+  .contact-info{ background:var(--card); padding:14px; border-radius:12px }
+  .map-container{ border-radius:12px; overflow:hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.5) }
+
+  /* Popup / Gallery */
+  .popup{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.85);
+    z-index:9999;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+  }
+  .popup.show{ display:flex }
+
+  .popup-inner{
+    width:100%;
+    max-width:980px;
+    background:var(--card);
+    border-radius:12px;
+    padding:14px;
+    position:relative;
+  }
+
+  .popup-main{
+    width:100%;
+    aspect-ratio:16/9;
+    object-fit:cover;
+    border-radius:8px;
+    border:3px solid rgba(255,215,0,0.12);
+    display:block;
+    background: #111;
+  }
+
+  .thumbs{
+    margin-top:12px;
+    display:flex;
+    gap:8px;
+    overflow:auto;
+    padding-bottom:6px;
+  }
+  .thumbs img{
+    width:84px;height:56px;object-fit:cover;border-radius:6px;cursor:pointer;opacity:0.9;border:2px solid transparent;
+  }
+  .thumbs img.active{ border-color:var(--accent); opacity:1; transform:scale(1.03) }
+
+  .popup-close{
+    position:absolute;right:12px;top:8px;font-size:26px;color:var(--accent);cursor:pointer;
+  }
+
+  .popup-nav{
+    position:absolute;top:50%;transform:translateY(-50%);font-size:36px;background:rgba(255,255,255,0.95);color:#000;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;
+  }
+  .popup-prev{ left:-10px }
+  .popup-next{ right:-10px }
+
+  /* Small screens tweaks */
+  @media (max-width:800px){
+    .contact-container{ grid-template-columns: 1fr; }
+    .top-banner{height:120px}
+    .hero{min-height: calc(100vh - 120px)}
+    .popup-nav{ display:none }
+  }
+
+  /* Helpful note block shown on page (developer note) */
+  .dev-note{
+    margin:18px auto 6px;
+    max-width:1200px;
+    background: linear-gradient(180deg, rgba(255,215,0,0.06), rgba(255,215,0,0.03));
+    color:var(--muted);
+    border:1px solid rgba(255,215,0,0.06);
+    padding:10px 14px;
+    border-radius:10px;
+    font-size:13px;
+  }
+
+  /* small footer */
+  footer{ text-align:center;color:var(--muted); padding:28px 10px;}
+  </style>
+</head>
+<body>
+
+  <!-- NOTE: CHANGE banner image at images/banner.jpg -->
+  <section class="top-banner">
+    <div class="banner-content">
+      <img src="images/banner.jpg" alt="Chamunda Auto Deal Banner" class="banner-img" />
+    </div>
+  </section>
+
+  <header class="hero">
+    <div class="hero-content">
+      <h1>CHAMUNDA AUTO DEAL</h1>
+      <p class="tagline">Best Deals On Wheels</p>
+      <div class="btn-row">
+        <button class="btn" onclick="scrollToStock()">View Our Stock ↓</button>
+        <button class="btn" onclick="window.location.href='tel:+917441191802'">Call: +91 74411 91802</button>
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- STOCK -->
+  <section class="container stock-section" id="stock">
+    <h2>Our Stock</h2>
+
+    <div class="bike-grid">
+
+      <!-- 1 -->
+             <article class="bike-card-square">
+        <img class="bike-thumb" src="images/r.4.jpg" alt="Sample Bike 3"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>Royal Enfield</h3>
+            <div class="bike-meta"><small class="price">₹1,75,000/-</small><small>2023 Model</small><small>1st Owner</small></div>
+            <p class="small-note">• Well serviced • Only 8,600 km running • Second key available • Insurance Available • IDFC Finance Available</p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup(['images/r.1.jpg','images/r.2.jpg','images/r.3.jpg','images/r.4.jpg','images/r.5.jpg','images/r.6.jpg','images/r.7.jpg'],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+
+
+      <!-- 2 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/ktm.3.jpg" alt="Sample Bike"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>KTM RC125</h3>
+            <div class="bike-meta"><small class="price">₹90,000/- Final</small><small>Dec 2019 Model</small><small>2nd owner</small></div>
+            <p class="small-note"> • IDFC finance available</p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup([
+               'images/ktm.1.jpg','images/ktm.2.jpg','images/ktm.3.jpg','images/ktm.4.jpg','images/ktm.5.jpg','images/ktm.6.jpg'
+            ],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/rider.4.jpg" alt="Honda Shine"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>TVS Rider</h3>
+            <div class="bike-meta"><small class="price">₹64,999/-</small><small>Feb 2024 Model </small><small>Single Owner</small></div>
+            <p class="small-note"> • Well maintained • 19,033 km • IDFC finance available </p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup(['images/Rider.1.jpg','images/Rider.2.jpg','images/Rider.3.jpg','images/Rider.4.jpg','images/Rider.5.jpg','images/Rider.6.jpg','images/Rider.7.jpg'
+            ],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/hero.3.jpg" alt="Honda Shine"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>Hero Passion +</h3>
+            <div class="bike-meta"><small class="price">₹61,999/- Final</small><small>2024 Model </small><small>Single Owner</small></div>
+            <p class="small-note"> • Well maintained • Insurance running • IDFC finance available </p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup(['images/hero.1.jpg','images/hero.2.jpg','images/hero.3.jpg','images/hero.4.jpg','images/hero.5.jpg'
+            ],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/spe.4.jpg" alt="Royal Enfield"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>Hero Splender Xtec</h3>
+            <div class="bike-meta"><small class="price">₹51,999/- Final</small><small>2022 Model</small><small>Single Owner</small></div>
+            <p class="small-note">• IDFC finance available</p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup(['images/spe.1.jpg','images/spe.2.jpg','images/spe.3.jpg','images/spe.4.jpg','images/spe.5.jpg','images/spe.6.jpg'
+            ],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/pro.4.jpg" alt="KTM Duke"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>Hero Passion Pro </h3>
+            <div class="bike-meta"><small class="price">₹29,999/- Final</small><small>2016 Model</small><small>2nd Owner</small></div>
+            <p class="small-note">• Powerful & maintained • IDFC Finance Not Available</p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup(['images/pro.1.jpg','images/pro.2.jpg','images/pro.3.jpg','images/pro.4.jpg','images/pro.5.jpg','images/pro.6.jpg'
+            ],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/ms.4.jpg" alt="Sample Bike 1"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>Hero Maestro</h3>
+            <div class="bike-meta"><small class="price">₹26,999/-</small><small>2018 Model</small><small>1st Owner</small></div>
+            <p class="small-note">• Ideal city Scooty • IDFC Finance Not Available</p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup(['images/ms.1.jpg','images/ms.2.jpg','images/ms.3.jpg','images/ms.4.jpg','images/ms.5.jpg','images/ms.6.jpg','images/ms.7.jpg'],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/pl.4.jpg" alt="Sample Bike 2"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>Bajaj Pulsar 125</h3>
+            <div class="bike-meta"><small class="price">₹59,999/-</small><small>2023 Model</small><small>1st Owner</small></div>
+            <p class="small-note">• Good running condition • Insurance running • IDFC Finance Not Available</p>
+
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup(['images/pl.1.jpg','images/pl.2.jpg','images/pl.3.jpg','images/pl.4.jpg','images/pl.5.jpg','images/pl.6.jpg','images/pl.7.jpg'],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 9 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/shine.4.jpg"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>Honda Shine</h3>
+            <div class="bike-meta">
+              <small class="price">₹51,999/- Final Price </small>
+              <small>July 2022 Model</small>
+              <small>Single Owner</small>
+            </div>
+            <p class="small-note">• 24,450 km • Insurance Active Till 2027 • IDFC finance available</p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup([
+              'images/shine.1.jpg','images/shine.2.jpg','images/shine.3.jpg','images/shine.4.jpg','images/shine.5.jpg','images/shine.6.jpg','images/shine.7.jpg','images/shine.8.jpg'
+            ], 0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/wg.3.jpg" alt="Sample Bike 4"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>TVS Wego</h3>
+            <div class="bike-meta"><small class="price">₹22,999/-</small><small>2013 Model</small><small>Single owner</small></div>
+            <p class="small-note">• Good tyre & brake condition</p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup(['images/wg.1.jpg','images/wg.2.jpg','images/wg.3.jpg','images/wg.4.jpg'],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 11 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/du.3.jpg" alt="TVS Ntorq"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>Hero Duet</h3>
+            <div class="bike-meta"><small class="price">₹26,999/-</small><small>2016 Model</small><small>Single Owner</small></div>
+            <p class="small-note">• Excellent city scooter</p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup(['images/du.1.jpg','images/du.2.jpg','images/du.3.jpg','images/du.4.jpg','images/du.5.jpg','images/du.6.jpg','images/du.7.jpg'],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 12 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/ac.4.jpg" alt="Honda Activa"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>Honda Activa</h3>
+            <div class="bike-meta"><small class="price">₹21,999/-</small><small>2013 Model</small><small>Single Owner</small></div>
+            <p class="small-note">• Well maintained</p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup(['images/ac.1.jpg','images/ac.2.jpg','images/ac.3.jpg','images/ac.4.jpg'],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+            <!-- 13 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/ra.4.jpg" alt="Honda Activa"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>TVS Raider</h3>
+            <div class="bike-meta"><small class="price">₹64,999/-</small><small>2024 Model</small><small>Single Owner</small></div>
+            <p class="small-note">• IDFC Finance Available • Insurance running</p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup(['images/ra.1.jpg','images/ra.2.jpg','images/ra.3.jpg','images/ra.4.jpg','images/ra.5.jpg','images/ra.6.jpg','images/ra.7.jpg'],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+              <!-- 14 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/ps.4.jpg" alt="Honda Activa"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>Hero passion pro</h3>
+            <div class="bike-meta"><small class="price">₹19,999/-</small><small>2011 Model</small><small>1st Owner</small></div>
+            <p class="small-note">• Great condition</p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup(['images/ps.1.jpg','images/ps.2.jpg','images/ps.3.jpg','images/ps.4.jpg','images/ps.5.jpg','images/ps.6.jpg'],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+              <!-- 15 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/hd.3.jpg" alt="Honda Activa"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>Hero Deluxe</h3>
+            <div class="bike-meta"><small class="price">₹27,999/-</small><small>2017 Model</small><small>1st Owner</small></div>
+            <p class="small-note">• Well maintained condition</p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup(['images/hd.1.jpg','images/hd.2.jpg','images/hd.3.jpg','images/hd.4.jpg','images/hd.5.jpg','images/hd.6.jpg'],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+              <!-- 16 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/cbz.3.jpg" alt="Honda Activa"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>Hero CBZ</h3>
+            <div class="bike-meta"><small class="price">₹17,999/-</small><small>2012 Model</small><small>Without Kick</small><small>Single Owner</small></div>
+            <p class="small-note">• Well maintained</p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup(['images/cbz.1.jpg','images/cbz.2.jpg','images/cbz.3.jpg','images/cbz.4.jpg','images/cbz.5.jpg','images/cbz.6.jpg'],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+              <!-- 17 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/lv.3.jpg" alt="Honda Activa"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>Honda Livo</h3>
+            <div class="bike-meta"><small class="price">₹32,999/- Final Price </small><small>2018 Model</small><small>Self Start </small></div>
+            <p class="small-note">• IDFC Finance Available</p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup(['images/lv.1.jpg','images/lv.2.jpg','images/lv.3.jpg','images/lv.4.jpg','images/lv.5.jpg','images/lv.6.jpg','images/lv.7.jpg'],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+              <!-- 18 -->
+      <article class="bike-card-square">
+        <img class="bike-thumb" src="images/sh.3.jpg" alt="Honda Activa"/>
+        <div class="bike-card-body">
+          <div>
+            <h3>Honda Shine</h3>
+            <div class="bike-meta"><small class="price">₹33,999/-</small><small>2017 Model</small><small>Single Owner</small></div>
+            <p class="small-note">• A+ Condition</p>
+          </div>
+          <div class="details-row">
+            <button class="btn" onclick="openPopup(['images/sh.1.jpg','images/sh.2.jpg','images/sh.3.jpg','images/sh.4.jpg','images/sh.5.jpg','images/sh.6.jpg'],0)">View Details</button>
+          </div>
+        </div>
+      </article>
+
+
+    </div> 
+  </section>
+
+  <!-- Achievements -->
+  <section class="container achievements">
+    <h2>Our Achievements</h2>
+    <div class="achievements-container">
+      <div class="achievement-card"><h3>20+ Years</h3><p>of Experience</p></div>
+      <div class="achievement-card"><h3>5000+</h3><p>Vehicles Sold</p></div>
+      <div class="achievement-card"><h3>1000+</h3><p>Happy Customers</p></div>
+      <div class="achievement-card"><h3>Trusted</h3><p>by Top Dealers</p></div>
+      <div class="achievement-card"><h3>After-Sales</h3><p>Support Available</p></div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="container team">
+    <h2>Meet Our Outstanding Team</h2>
+    <div class="team-container">
+      <div class="team-card"><img src=""><h3>Mr. Amit Choudhary</h3><p>Owner</p><a class="small-note" href="https://www.instagram.com/amit_choudhary_19" target="_blank">Instagram</a></div>
+      <div class="team-card"><img src=""><h3>Mr. Bhagwan Singh Choudhary</h3><p>Founder</p><a class="small-note" href="#" target="_blank">Instagram</a></div>
+      <div class="team-card"><img src=""><h3>Mr. Aditya Anil Chaudhary</h3><p>Social Media Manager</p><a class="small-note" href="#" target="_blank">Instagram</a></div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="container contact">
+    <h2>Visit Us or Get in Touch</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <p><strong>Address:</strong> 2, Kumar Gali, Behind Sai Plaza, Dewas, Madhya Pradesh</p>
+        <p><strong>Phone:</strong> <a href="tel:+917441191802">+91 74411 91802</a></p>
+        <p><strong>Hours:</strong> Mon - Sun, 10:00 AM - 8:00 PM</p>
+      </div>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.593174367956!2d76.0551978753121!3d22.96520517921392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39631792373d6453%3A0x5d75abaf8ea9462a!2sCHAMUNDA%20AUTO%20DEAL%20DEWAS!5e0!3m2!1sen!2sin!4v1762769846881!5m2!1sen!2sin"
+          width="100%" height="300" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer><small>© Chamunda Auto Deal — All rights reserved</small></footer>
+
+  <!-- IMAGE POPUP / GALLERY -->
+  <div id="imagePopup" class="popup" aria-hidden="true">
+    <div class="popup-inner" role="dialog" aria-modal="true" aria-label="Bike images">
+      <button class="popup-close" aria-label="close" id="popupClose">&times;</button>
+
+      <img id="popupMain" class="popup-main" src="" alt="Bike main image" />
+
+      <div class="thumbs" id="thumbs"></div>
+
+      <!-- optional big nav for desktop -->
+      <button class="popup-nav popup-prev" id="prevBtn" aria-label="previous">❮</button>
+      <button class="popup-nav popup-next" id="nextBtn" aria-label="next">❯</button>
+    </div>
+  </div>
+
+<script>
+/* Smooth scroll + highlight */
+function scrollToStock(){
+  const s = document.getElementById('stock');
+  s.scrollIntoView({behavior:'smooth', block:'start'});
+  s.classList.add('highlight');
+  setTimeout(()=>s.classList.remove('highlight'), 1000);
+}
+
+/* IMAGE POPUP / GALLERY LOGIC
+ - call openPopup(arrayOfImageURLs, startIndex)
+ - supports thumbnails, next/prev, keyboard arrows, close on ESC or click outside
+*/
+const popup = document.getElementById('imagePopup');
+const popupMain = document.getElementById('popupMain');
+const thumbsEl = document.getElementById('thumbs');
+const popupClose = document.getElementById('popupClose');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+let currentImages = [];
+let currentIndex = 0;
+
+function openPopup(images, startIndex = 0){
+  if(!images || !images.length) return;
+  currentImages = images.slice(); // clone
+  currentIndex = (startIndex >= 0 && startIndex < images.length) ? startIndex : 0;
+  renderPopup();
+  popup.classList.add('show');
+  popup.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden'; // lock background scroll
+  // focus for keyboard
+  popupClose.focus();
+}
+
+function closePopup(){
+  popup.classList.remove('show');
+  popup.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+  currentImages = [];
+  thumbsEl.innerHTML = '';
+}
+
+function renderPopup(){
+  popupMain.src = currentImages[currentIndex];
+  // thumbnails
+  thumbsEl.innerHTML = '';
+  currentImages.forEach((src, i) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = 'thumb ' + (i+1);
+    img.className = i===currentIndex ? 'active' : '';
+    img.addEventListener('click', ()=> { currentIndex = i; renderPopup(); });
+    thumbsEl.appendChild(img);
+  });
+}
+
+/* change by delta (1 or -1) */
+function changeImage(delta){
+  if(!currentImages.length) return;
+  currentIndex += delta;
+  if(currentIndex < 0) currentIndex = currentImages.length - 1;
+  if(currentIndex >= currentImages.length) currentIndex = 0;
+  renderPopup();
+}
+
+/* event listeners */
+popupClose.addEventListener('click', closePopup);
+prevBtn.addEventListener('click', ()=> changeImage(-1));
+nextBtn.addEventListener('click', ()=> changeImage(1));
+
+popup.addEventListener('click', (e)=>{
+  if(e.target === popup) closePopup(); // click outside content closes popup
+});
+
+/* keyboard support */
+window.addEventListener('keydown', (e)=>{
+  if(popup.classList.contains('show')){
+    if(e.key === 'Escape') closePopup();
+    if(e.key === 'ArrowLeft') changeImage(-1);
+    if(e.key === 'ArrowRight') changeImage(1);
+  }
+});
+
+/* Optional: lazy-load large images by swapping in real src when popup open
+   (already implemented by setting src on popup open) */
+
+/* Accessibility tip: ensure your images have meaningful alt text when you replace placeholders */
+
+/* END of script */
+</script>
+
+</body>
+</html>
