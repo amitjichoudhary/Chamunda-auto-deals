@@ -13,7 +13,7 @@ body {
 }
 
 /* ============================= */
-/* 🔥 TOP BANNER */
+/* TOP BANNER */
 /* ============================= */
 .top-banner {
   width: 100%;
@@ -32,7 +32,7 @@ body {
 }
 
 /* ============================= */
-/* 🔥 HERO SECTION */
+/* HERO SECTION */
 /* ============================= */
 .hero {
   height: 90vh;
@@ -78,7 +78,7 @@ body {
 }
 
 /* ============================= */
-/* 🔥 STOCK SECTION */
+/* STOCK SECTION */
 /* ============================= */
 .stock-section {
   padding: 50px 20px;
@@ -91,22 +91,29 @@ body {
   margin-bottom: 25px;
 }
 
-/* Bike Grid (UPDATED) */
+/* ============================= */
+/* BIKE GRID — FIXED VERSION */
+/* ============================= */
+
+/* Mobile: 1 card per row */
 .bike-grid {
   display: grid;
-  grid-template-columns: 1fr; /* Mobile: 1 per row */
+  grid-template-columns: 1fr;
   gap: 18px;
   align-items: start;
 }
 
-/* Laptop/Desktop → 2 cards per row */
+/* Laptop/Desktop: 2 cards per row */
 @media (min-width: 768px) {
   .bike-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Bike Card */
+/* ============================= */
+/* BIKE CARD */
+/* ============================= */
+
 .bike-card {
   background: #141c2f;
   border-radius: 14px;
@@ -157,7 +164,7 @@ body {
 .badge.best { background: #ffc107; color: #000; }
 
 /* ============================= */
-/* 🔥 MODAL POPUP */
+/* MODAL */
 /* ============================= */
 
 .modal {
@@ -211,47 +218,26 @@ body {
   transform: scale(1.2);
 }
 
-/* Smooth Modal Animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.9); }
   to { opacity: 1; transform: scale(1); }
 }
 
 /* ============================= */
-/* 🔥 RESPONSIVE FIXES */
+/* RESPONSIVE FIXES */
 /* ============================= */
 
-/* Phones */
 @media (max-width: 500px) {
-  .hero h1 {
-    font-size: 2.1rem;
-  }
-
-  .tagline {
-    font-size: 1rem;
-  }
-
-  .scroll-btn {
-    padding: 10px 22px;
-  }
+  .hero h1 { font-size: 2.1rem; }
+  .tagline { font-size: 1rem; }
+  .scroll-btn { padding: 10px 22px; }
 }
 
-/* Tablets */
 @media (min-width: 768px) {
-  .hero h1 {
-    font-size: 3rem;
-  }
-
-  .tagline {
-    font-size: 1.3rem;
-  }
+  .hero h1 { font-size: 3rem; }
+  .tagline { font-size: 1.3rem; }
 }
 
-/* Large Screens */
 @media (min-width: 1000px) {
-  .hero {
-    height: 95vh;
-  }
+  .hero { height: 95vh; }
 }
-
-
