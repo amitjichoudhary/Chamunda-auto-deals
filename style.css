@@ -95,7 +95,8 @@ body {
 .bike-grid {
   display: grid;
   grid-template-columns: 1fr; /* Mobile: 1 per row */
-  gap: 20px;
+  gap: 18px;
+  align-items: start;
 }
 
 /* Laptop/Desktop → 2 cards per row */
@@ -252,3 +253,4 @@ body {
     height: 95vh;
   }
 }
+
