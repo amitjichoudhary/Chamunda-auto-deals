@@ -91,11 +91,18 @@ body {
   margin-bottom: 25px;
 }
 
-/* Bike Grid */
+/* Bike Grid (UPDATED) */
 .bike-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: 1fr; /* Mobile: 1 per row */
   gap: 20px;
+}
+
+/* Laptop/Desktop → 2 cards per row */
+@media (min-width: 768px) {
+  .bike-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Bike Card */
