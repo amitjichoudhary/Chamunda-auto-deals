@@ -99,16 +99,14 @@ body {
 .bike-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 18px;
+  gap: 20px;
   align-items: start;
 }
 
-/* Laptop/Desktop: 2 cards per row */
-@media (min-width: 768px) {
-  .bike-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+
+
+
+
 
 /* ============================= */
 /* BIKE CARD */
