@@ -117,6 +117,21 @@
     margin-bottom:18px;
   }
 
+  /* ======= UPDATED BIKE GRID: MOBILE 1 / LAPTOP 2 ======= */
+  .bike-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* mobile: 1 per row */
+    gap: 22px;
+    margin-top: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .bike-grid {
+      grid-template-columns: repeat(3, 1fr); /* laptop: 2 per row */
+    }
+  }
+  /* ===================================================== */
+
   .bike-card-square{
     background:var(--card);
     border-radius: var(--radius);
@@ -309,8 +324,7 @@
   </header>
 
 
-
-  <!-- STOCK -->
+<!-- STOCK -->
   <section class="container stock-section" id="stock">
     <h2>Our Stock</h2>
 
@@ -590,6 +604,7 @@
     </div> 
   </section>
 
+
   <!-- Achievements -->
   <section class="container achievements">
     <h2>Our Achievements</h2>
@@ -717,12 +732,12 @@ popupClose.addEventListener('click', closePopup);
 prevBtn.addEventListener('click', ()=> changeImage(-1));
 nextBtn.addEventListener('click', ()=> changeImage(1));
 
-popup.addEventListener('click', (e)=>{
+popup.addEventListener('click', (e)=>{ 
   if(e.target === popup) closePopup(); // click outside content closes popup
 });
 
 /* keyboard support */
-window.addEventListener('keydown', (e)=>{
+window.addEventListener('keydown', (e)=>{ 
   if(popup.classList.contains('show')){
     if(e.key === 'Escape') closePopup();
     if(e.key === 'ArrowLeft') changeImage(-1);
@@ -730,52 +745,8 @@ window.addEventListener('keydown', (e)=>{
   }
 });
 
-/* Optional: lazy-load large images by swapping in real src when popup open
-   (already implemented by setting src on popup open) */
-
-/* Accessibility tip: ensure your images have meaningful alt text when you replace placeholders */
-
-/* END of script */
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
